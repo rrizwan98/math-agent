@@ -1,55 +1,65 @@
-# [PROJECT_NAME] Constitution
-<!-- Example: Spec Constitution, TaskFlow Constitution, etc. -->
+<!--
+Sync Impact Report:
+- Version change: 0.0.0 → 1.0.0
+- List of modified principles:
+  - PRINCIPLE_1: Accurate Math Results
+  - PRINCIPLE_2: Clear and Concise Answers
+  - PRINCIPLE_3: Defined Function Usage
+  - PRINCIPLE_4: Input Validation
+  - PRINCIPLE_5: Calculation via Function Calling
+  - PRINCIPLE_6: Minimal Extra Text
+- Added sections:
+  - Functions
+  - Constraints
+  - Success Criteria
+- Removed sections: None
+- Templates requiring updates:
+  - ✅ .specify/templates/plan-template.md
+  - ✅ .specify/templates/spec-template.md
+  - ✅ .specify/templates/tasks-template.md
+- Follow-up TODOs: None
+-->
+# Basic Math Agent (Add & Subtract) Constitution
 
 ## Core Principles
 
-### [PRINCIPLE_1_NAME]
-<!-- Example: I. Library-First -->
-[PRINCIPLE_1_DESCRIPTION]
-<!-- Example: Every feature starts as a standalone library; Libraries must be self-contained, independently testable, documented; Clear purpose required - no organizational-only libraries -->
+### I. Accurate Math Results
+Always give accurate math results.
 
-### [PRINCIPLE_2_NAME]
-<!-- Example: II. CLI Interface -->
-[PRINCIPLE_2_DESCRIPTION]
-<!-- Example: Every library exposes functionality via CLI; Text in/out protocol: stdin/args → stdout, errors → stderr; Support JSON + human-readable formats -->
+### II. Clear and Concise Answers
+Keep answers short and clear.
 
-### [PRINCIPLE_3_NAME]
-<!-- Example: III. Test-First (NON-NEGOTIABLE) -->
-[PRINCIPLE_3_DESCRIPTION]
-<!-- Example: TDD mandatory: Tests written → User approved → Tests fail → Then implement; Red-Green-Refactor cycle strictly enforced -->
+### III. Defined Function Usage
+Only use defined functions (add, subtract).
 
-### [PRINCIPLE_4_NAME]
-<!-- Example: IV. Integration Testing -->
-[PRINCIPLE_4_DESCRIPTION]
-<!-- Example: Focus areas requiring integration tests: New library contract tests, Contract changes, Inter-service communication, Shared schemas -->
+### IV. Input Validation
+Validate inputs (numbers only).
 
-### [PRINCIPLE_5_NAME]
-<!-- Example: V. Observability, VI. Versioning & Breaking Changes, VII. Simplicity -->
-[PRINCIPLE_5_DESCRIPTION]
-<!-- Example: Text I/O ensures debuggability; Structured logging required; Or: MAJOR.MINOR.BUILD format; Or: Start simple, YAGNI principles -->
+### V. Calculation via Function Calling
+Use function calling for every calculation.
 
-### [PRINCIPLE_6_NAME]
+### VI. Minimal Extra Text
+No extra text unless asked.
 
+## Functions
 
-[PRINCIPLE__DESCRIPTION]
+- `add(a, b)`: return a + b
+- `subtract(a, b)`: return a – b
 
-## [SECTION_2_NAME]
-<!-- Example: Additional Constraints, Security Requirements, Performance Standards, etc. -->
+## Constraints
 
-[SECTION_2_CONTENT]
-<!-- Example: Technology stack requirements, compliance standards, deployment policies, etc. -->
+- No other math operations are permitted.
+- No assumptions should be made if numbers are missing from the input.
+- Return clear errors for any invalid input.
 
-## [SECTION_3_NAME]
-<!-- Example: Development Workflow, Review Process, Quality Gates, etc. -->
+## Success Criteria
 
-[SECTION_3_CONTENT]
-<!-- Example: Code review requirements, testing gates, deployment approval process, etc. -->
+- Zero calculation mistakes.
+- Correct function calls for all calculations.
+- Simple and consistent responses.
 
 ## Governance
-<!-- Example: Constitution supersedes all other practices; Amendments require documentation, approval, migration plan -->
 
-[GOVERNANCE_RULES]
-<!-- Example: All PRs/reviews must verify compliance; Complexity must be justified; Use [GUIDANCE_FILE] for runtime development guidance -->
+This Constitution is the single source of truth for project standards and supersedes all other practices. Amendments require documentation, team approval, and a migration plan for dependent artifacts. All code reviews and contributions MUST verify compliance with these principles.
 
-**Version**: [CONSTITUTION_VERSION] | **Ratified**: [RATIFICATION_DATE] | **Last Amended**: [LAST_AMENDED_DATE]
-<!-- Example: Version: 2.1.1 | Ratified: 2025-06-13 | Last Amended: 2025-07-16 -->
+**Version**: 1.0.0 | **Ratified**: 2025-11-29 | **Last Amended**: 2025-11-29
