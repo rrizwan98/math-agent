@@ -1,0 +1,86 @@
+openapi: 3.0.0
+info:
+  title: Math Agent API
+  version: 1.0.0
+  description: API for the Function-Calling Add & Subtract Math Agent.
+servers:
+  - url: /
+paths:
+  /add:
+    post:
+      summary: Adds two numbers
+      operationId: addNumbers
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - a
+                - b
+              properties:
+                a:
+                  type: number
+                  description: The first number
+                b:
+                  type: number
+                  description: The second number
+      responses:
+        '200':
+          description: Sum of the two numbers
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  result:
+                    type: number
+        '400':
+          description: Invalid input
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+  /subtract:
+    post:
+      summary: Subtracts one number from another
+      operationId: subtractNumbers
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - a
+                - b
+              properties:
+                a:
+                  type: number
+                  description: The number to subtract from
+                b:
+                  type: number
+                  description: The number to subtract
+      responses:
+        '200':
+          description: Difference of the two numbers
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  result:
+                    type: number
+        '400':
+          description: Invalid input
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
