@@ -17,7 +17,7 @@ This plan outlines the implementation for a Math Agent capable of performing bas
   the iteration process.
 -->
 
-**Language/Version**: Python 3.11  
+**Language/Version**: Python 3.12  
 **Primary Dependencies**: None (standard library only for core logic)  
 **Storage**: N/A  
 **Testing**: `pytest`  
