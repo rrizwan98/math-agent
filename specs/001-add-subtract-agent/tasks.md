@@ -1,9 +1,9 @@
 ---
 
-description: "Task list for Math Agent – Function-Calling Add & Subtract Agent"
+description: "Task list for Math Agent – Function-Calling Add & Subtract Agent with OpenAI SDK"
 ---
 
-# Tasks: Math Agent – Function-Calling Add & Subtract Agent
+# Tasks: Math Agent – Function-Calling Add & Subtract Agent with OpenAI SDK
 
 **Input**: Design documents from `/specs/001-add-subtract-agent/`
 **Prerequisites**: plan.md (required), spec.md (required for user stories), research.md, data-model.md, contracts/
@@ -27,9 +27,10 @@ description: "Task list for Math Agent – Function-Calling Add & Subtract Agent
 
 **Purpose**: Project initialization and basic structure
 
-- [ ] T001 Create project structure: `src/agent/`, `src/lib/`, `tests/unit/`, `tests/integration/`
-- [ ] T002 Initialize Python 3.12 project using 'uv' (automatically creates .venv and .toml files)
-- [ ] T003 Install `pytest` for testing (add to `pyproject.toml` or `requirements.txt`)
+- [X] T001 Create project structure: `src/agent/`, `src/lib/`, `tests/unit/`, `tests/integration/`
+- [X] T002 Initialize Python 3.12 project using 'uv' (automatically creates .venv and .toml files)
+- [X] T003 Install `pytest` for testing (add to `pyproject.toml` or `requirements.txt`)
+- [X] T003.1 Install OpenAI Python SDK (add to `pyproject.toml` or `requirements.txt`)
 
 ---
 
@@ -39,79 +40,83 @@ description: "Task list for Math Agent – Function-Calling Add & Subtract Agent
 
 **⚠️ CRITICAL**: No user story work can begin until this phase is complete
 
-- [ ] T004 Implement input validation utility `is_numeric` in `src/lib/validation.py`
-- [ ] T005 Create base structure for `math_functions` module in `src/agent/math_functions.py`
+- [X] T004 Implement input validation utility `is_numeric` in `src/lib/validation.py`
+- [X] T005 Create base structure for `math_functions` module in `src/agent/math_functions.py`
 
 **Checkpoint**: Foundation ready - user story implementation can now begin in parallel
 
 ---
 
-## Phase 3: User Story 1 - Basic Addition (Priority: P1) 🎯 MVP
+## Phase 3: OpenAI Agent SDK Integration
 
-**Goal**: Implement the `add` function to correctly sum two numbers, and integrate it.
+**Purpose**: Integrate the math functions with the OpenAI Agent SDK for natural language function calling.
 
-**Independent Test**: Provide two numbers to the `add` function and verify the correct sum, both via unit and integration tests.
+- [X] T005.1 Define `add` function as an OpenAI tool within `src/agent/openai_tools.py`
+- [X] T005.2 Define `subtract` function as an OpenAI tool within `src/agent/openai_tools.py`
+- [X] T005.3 Modify `src/agent/agent.py` to initialize the OpenAI client, load tools, and process natural language queries.
+- [X] T005.4 Update `src/agent/agent.py` to handle tool calls and return results.
+- [X] T005.5 Implement error handling for `ValueError` from math functions within `src/agent/agent.py`'s tool calling mechanism.
+
+---
+
+## Phase 4: User Story 1 - Basic Addition (Priority: P1) 🎯 MVP
+
+**Goal**: Enable natural language interaction for the `add` function via the OpenAI Agent SDK.
+
+**Independent Test**: Provide a natural language query for addition and verify the correct function call and result.
 
 ### Tests for User Story 1
 > **NOTE: Write these tests FIRST, ensure they FAIL before implementation**
 
-- [ ] T006 [P] [US1] Unit test for `add` function with positive integers in `tests/unit/test_math_functions.py`
-- [ ] T007 [P] [US1] Unit test for `add` function with negative integers in `tests/unit/test_math_functions.py`
-- [ ] T008 [P] [US1] Unit test for `add` function with floats in `tests/unit/test_math_functions.py`
-- [ ] T009 [P] [US1] Integration test for `/add` endpoint with valid inputs in `tests/integration/test_math_api.py`
+- [X] T006 [P] [US1] Unit test for `add` function with positive integers in `tests/unit/test_math_functions.py`
+- [X] T007 [P] [US1] Unit test for `add` function with negative integers in `tests/unit/test_math_functions.py`
+- [X] T008 [P] [US1] Unit test for `add` function with floats in `tests/unit/test_math_functions.py`
+- [X] T009 [P] [US1] Integration test for `/add` endpoint with valid inputs in `tests/integration/test_math_api.py`
+- [X] T009.1 [US1] Integration test for natural language addition via OpenAI SDK in `tests/integration/test_openai_agent.py`
 
 ### Implementation for User Story 1
-
-- [ ] T010 [US1] Implement `add` function in `src/agent/math_functions.py`
-- [ ] T011 [US1] Integrate `add` function into the agent's callable interface (e.g., `src/agent/agent.py` or main entry point)
-
-**Checkpoint**: At this point, User Story 1 should be fully functional and testable independently
+(Already covered by OpenAI Agent SDK Integration phase and previous `math_functions.py` tasks)
 
 ---
 
-## Phase 4: User Story 2 - Basic Subtraction (Priority: P1)
+## Phase 5: User Story 2 - Basic Subtraction (Priority: P1)
 
-**Goal**: Implement the `subtract` function to correctly find the difference between two numbers, and integrate it.
+**Goal**: Enable natural language interaction for the `subtract` function via the OpenAI Agent SDK.
 
-**Independent Test**: Provide two numbers to the `subtract` function and verify the correct difference, both via unit and integration tests.
+**Independent Test**: Provide a natural language query for subtraction and verify the correct function call and result.
 
 ### Tests for User Story 2
 > **NOTE: Write these tests FIRST, ensure they FAIL before implementation**
 
-- [ ] T012 [P] [US2] Unit test for `subtract` function with positive integers in `tests/unit/test_math_functions.py`
-- [ ] T013 [P] [US2] Unit test for `subtract` function with negative integers in `tests/unit/test_math_functions.py`
-- [ ] T014 [P] [US2] Unit test for `subtract` function with floats in `tests/unit/test_math_functions.py`
-- [ ] T015 [P] [US2] Integration test for `/subtract` endpoint with valid inputs in `tests/integration/test_math_api.py`
+- [X] T012 [P] [US2] Unit test for `subtract` function with positive integers in `tests/unit/test_math_functions.py`
+- [X] T013 [P] [US2] Unit test for `subtract` function with negative integers in `tests/unit/test_math_functions.py`
+- [X] T014 [P] [US2] Unit test for `subtract` function with floats in `tests/unit/test_math_functions.py`
+- [X] T015 [P] [US2] Integration test for `/subtract` endpoint with valid inputs in `tests/integration/test_math_api.py`
+- [X] T015.1 [US2] Integration test for natural language subtraction via OpenAI SDK in `tests/integration/test_openai_agent.py`
 
 ### Implementation for User Story 2
-
-- [ ] T016 [US2] Implement `subtract` function in `src/agent/math_functions.py`
-- [ ] T017 [US2] Integrate `subtract` function into the agent's callable interface (e.g., `src/agent/agent.py` or main entry point)
-
-**Checkpoint**: At this point, User Stories 1 AND 2 should both work independently
+(Already covered by OpenAI Agent SDK Integration phase and previous `math_functions.py` tasks)
 
 ---
 
-## Phase 5: User Story 3 - Error Handling for Invalid Inputs (Priority: P1)
+## Phase 6: User Story 3 - Error Handling for Invalid Inputs and Unsupported Operations (Priority: P1)
 
-**Goal**: Ensure the agent returns clear, structured error messages for invalid inputs.
+**Goal**: Ensure robust error handling for invalid inputs and unsupported operations via natural language.
 
-**Independent Test**: Provide non-numeric inputs to `add` and `subtract` functions and check for structured error messages, both via unit and integration tests.
+**Independent Test**: Provide non-numeric inputs or request unsupported operations via natural language and check for structured error messages.
 
 ### Tests for User Story 3
 > **NOTE: Write these tests FIRST, ensure they FAIL before implementation**
 
-- [ ] T018 [P] [US3] Unit test for `add` with non-numeric inputs in `tests/unit/test_math_functions.py`
-- [ ] T019 [P] [US3] Unit test for `subtract` with non-numeric inputs in `tests/unit/test_math_functions.py`
-- [ ] T020 [P] [US3] Integration test for `/add` with non-numeric inputs in `tests/integration/test_math_api.py`
-- [ ] T021 [P] [US3] Integration test for `/subtract` with non-numeric inputs in `tests/integration/test_math_api.py`
+- [X] T018 [P] [US3] Unit test for `add` with non-numeric inputs in `tests/unit/test_math_functions.py`
+- [X] T019 [P] [US3] Unit test for `subtract` with non-numeric inputs in `tests/unit/test_math_functions.py`
+- [X] T020 [P] [US3] Integration test for `/add` with non-numeric inputs in `tests/integration/test_math_api.py`
+- [X] T021 [P] [US3] Integration test for `/subtract` with non-numeric inputs in `tests/integration/test_math_api.py`
+- [X] T021.1 [US3] Integration test for non-numeric inputs via natural language via OpenAI SDK in `tests/integration/test_openai_agent.py`
+- [X] T021.2 [US3] Integration test for unsupported operations via natural language via OpenAI SDK in `tests/integration/test_openai_agent.py`
 
 ### Implementation for User Story 3
-
-- [ ] T022 [US3] Refine input validation in `src/lib/validation.py` to return structured errors (if not already handled by T004).
-- [ ] T023 [US3] Ensure agent's callable interface (`src/agent/agent.py` or main entry point) correctly handles and returns validation errors.
-
-**Checkpoint**: All user stories should now be independently functional
+(Already covered by OpenAI Agent SDK Integration phase and previous `math_functions.py` and `validation.py` tasks)
 
 ---
 
@@ -119,9 +124,9 @@ description: "Task list for Math Agent – Function-Calling Add & Subtract Agent
 
 **Purpose**: Improvements that affect multiple user stories
 
-- [ ] T024 Code cleanup and refactoring in `src/` and `tests/`.
-- [ ] T025 Ensure all Success Criteria (SC-001, SC-002, SC-003, SC-004) from `spec.md` are met.
-- [ ] T026 Validate `quickstart.md` against implemented functionality.
+- [X] T024 Code cleanup and refactoring in `src/` and `tests/`.
+- [X] T025 Ensure all Success Criteria (SC-001, SC-002, SC-003, SC-004) from `spec.md` are met.
+- [ ] T026 Validate `quickstart.md` against implemented functionality (now including natural language interaction).
 
 ---
 
@@ -130,17 +135,18 @@ description: "Task list for Math Agent – Function-Calling Add & Subtract Agent
 ### Phase Dependencies
 
 - **Setup (Phase 1)**: No dependencies - can start immediately
-- **Foundational (Phase 2)**: Depends on Setup completion - BLOCKS all user stories
-- **User Stories (Phase 3+)**: All depend on Foundational phase completion
+- **Foundational (Phase 2)**: Depends on Setup completion
+- **OpenAI Agent SDK Integration (New Phase)**: Depends on Foundational phase completion. BLOCKS user stories.
+- **User Stories (Phase 4, 5, 6)**: All depend on OpenAI Agent SDK Integration phase completion.
   - User stories can then proceed in parallel (if staffed)
   - Or sequentially in priority order (P1 → P2 → P3)
 - **Polish (Final Phase)**: Depends on all desired user stories being complete
 
 ### User Story Dependencies
 
-- **User Story 1 (P1)**: Can start after Foundational (Phase 2) - No dependencies on other stories
-- **User Story 2 (P1)**: Can start after Foundational (Phase 2) - No dependencies on other stories
-- **User Story 3 (P1)**: Can start after Foundational (Phase 2) - No dependencies on other stories
+- **User Story 1 (P1)**: Can start after OpenAI Agent SDK Integration - No dependencies on other stories
+- **User Story 2 (P1)**: Can start after OpenAI Agent SDK Integration - No dependencies on other stories
+- **User Story 3 (P1)**: Can start after OpenAI Agent SDK Integration - No dependencies on other stories
 
 ### Within Each User Story
 
@@ -150,54 +156,58 @@ description: "Task list for Math Agent – Function-Calling Add & Subtract Agent
 
 ### Parallel Opportunities
 
-- All Setup tasks (T001-T003) can run in parallel.
+- All Setup tasks (T001-T003.1) can run in parallel (T003.1 depends on T002).
 - Foundational tasks (T004-T005) can run in parallel.
-- Once Foundational phase completes, all user stories (US1, US2, US3) can start in parallel by different team members.
+- OpenAI Agent SDK Integration tasks (T005.1-T005.5) have some internal dependencies but can be largely parallelized.
+- Once OpenAI Agent SDK Integration phase completes, all user stories (US1, US2, US3) can start in parallel by different team members.
 - Tests within each user story marked [P] can run in parallel.
 
 ---
 
-## Parallel Example: User Story 1
+## Parallel Example: OpenAI Agent SDK Integration Phase
 
 ```bash
-# Launch all tests for User Story 1 together:
-Task: "Unit test for add function with positive integers in tests/unit/test_math_functions.py"
-Task: "Unit test for add function with negative integers in tests/unit/test_math_functions.py"
-Task: "Unit test for add function with floats in tests/unit/test_math_functions.py"
-Task: "Integration test for /add endpoint with valid inputs in tests/integration/test_math_api.py"
+# Define tools in parallel
+Task: "Define `add` function as an OpenAI tool within src/agent/openai_tools.py"
+Task: "Define `subtract` function as an OpenAI tool within src/agent/openai_tools.py"
 
-# Implementation tasks will proceed sequentially after tests are written.
+# Then modify agent.py
+Task: "Modify src/agent/agent.py to initialize the OpenAI client, load tools, and process natural language queries."
+Task: "Update src/agent/agent.py to handle tool calls and return results."
+Task: "Implement error handling for ValueError from math functions within src/agent/agent.py's tool calling mechanism."
 ```
 
 ---
 
 ## Implementation Strategy
 
-### MVP First (User Story 1 Only)
+### MVP First (User Story 1 Only via OpenAI SDK)
 
 1. Complete Phase 1: Setup
-2. Complete Phase 2: Foundational (CRITICAL - blocks all stories)
-3. Complete Phase 3: User Story 1
-4. **STOP and VALIDATE**: Test User Story 1 independently
-5. Deploy/demo if ready
+2. Complete Phase 2: Foundational
+3. Complete New Phase: OpenAI Agent SDK Integration
+4. Complete Phase 4: User Story 1 (updated tests/implementation)
+5. **STOP and VALIDATE**: Test User Story 1 independently (natural language interaction)
+6. Deploy/demo if ready
 
 ### Incremental Delivery
 
 1. Complete Setup + Foundational → Foundation ready
-2. Add User Story 1 → Test independently → Deploy/Demo (MVP!)
-3. Add User Story 2 → Test independently → Deploy/Demo
-4. Add User Story 3 → Test independently → Deploy/Demo
-5. Each story adds value without breaking previous stories
+2. Complete OpenAI Agent SDK Integration → SDK ready
+3. Add User Story 1 → Test independently → Deploy/Demo (MVP!)
+4. Add User Story 2 → Test independently → Deploy/Demo
+5. Add User Story 3 → Test independently → Deploy/Demo
+6. Each story adds value without breaking previous stories
 
 ### Parallel Team Strategy
 
 With multiple developers:
 
-1. Team completes Setup + Foundational together
-2. Once Foundational is done:
-   - Developer A: User Story 1
-   - Developer B: User Story 2
-   - Developer C: User Story 3
+1. Team completes Setup + Foundational + OpenAI Agent SDK Integration together
+2. Once Integration is done:
+   - Developer A: User Story 1 (updated)
+   - Developer B: User Story 2 (updated)
+   - Developer C: User Story 3 (updated)
 3. Stories complete and integrate independently
 
 ---

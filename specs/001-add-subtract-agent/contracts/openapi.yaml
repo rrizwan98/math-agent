@@ -2,7 +2,7 @@ openapi: 3.0.0
 info:
   title: Math Agent API
   version: 1.0.0
-  description: API for the Function-Calling Add & Subtract Math Agent.
+  description: API for the Function-Calling Add & Subtract Math Agent. These functions are exposed as tools callable via the OpenAI Agent SDK for natural language interaction.
 servers:
   - url: /
 paths:
