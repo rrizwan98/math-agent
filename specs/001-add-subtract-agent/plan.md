@@ -18,7 +18,7 @@ This plan outlines the implementation for a Math Agent capable of performing bas
 -->
 
 **Language/Version**: Python 3.12
-**Primary Dependencies**: OpenAI Agent SDK (and its dependencies), `pytest`
+**Primary Dependencies**: OpenAI Agent SDK (and its dependencies), `pytest`, `FastAPI`, `uvicorn`
 **Storage**: N/A
 **Testing**: `pytest`
 **Target Platform**: Linux server (containerized deployment expected)
@@ -26,6 +26,14 @@ This plan outlines the implementation for a Math Agent capable of performing bas
 **Performance Goals**: Response time for any valid natural language request < 1000ms (from SC-004 in spec.md, accounting for SDK overhead)
 **Constraints**: Only addition and subtraction allowed; Inputs must be numbers (integers or floats); Clear error messages for invalid inputs/unsupported operations (from FR-003, FR-004, FR-005, Constitution). Interaction primarily through natural language parsed by OpenAI Agent SDK.
 **Scale/Scope**: Low to Medium volume (initial assumption, NEEDS CLARIFICATION if higher scale is expected, e.g., concurrent requests)
+
+### FastAPI Service
+
+A FastAPI application (`src/main.py`) will be created to expose the `chat_with_agent()` function via an HTTP endpoint. This will allow external applications (e.g., a frontend UI) to interact with the math agent by sending natural language queries and receiving JSON responses. The service will:
+- Accept POST requests to a `/chat` endpoint.
+- Extract the natural language query from the request body.
+- Pass the query to the `chat_with_agent()` function.
+- Return the agent's response as a JSON object.
 
 ## Constitution Check
 
@@ -63,6 +71,7 @@ specs/001-add-subtract-agent/
 ```text
 src/
 ├── agent/                # Contains the core agent logic and function definitions, and OpenAI SDK integration
+├── main.py               # FastAPI application entry point
 └── lib/                  # Utility functions if any
 
 tests/

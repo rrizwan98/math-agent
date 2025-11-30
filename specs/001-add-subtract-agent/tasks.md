@@ -120,6 +120,27 @@ description: "Task list for Math Agent – Function-Calling Add & Subtract Agent
 
 ---
 
+## Phase 7: FastAPI Integration
+
+**Goal**: Expose the `chat_with_agent` function via a FastAPI endpoint for external consumption.
+
+### Tests for FastAPI Integration
+> **NOTE: Write these tests FIRST, ensure they FAIL before implementation**
+
+- [ ] T022 [P] [FASTAPI] Integration test for `/chat` endpoint with valid addition query in `tests/integration/test_fastapi_agent.py`
+- [ ] T023 [P] [FASTAPI] Integration test for `/chat` endpoint with valid subtraction query in `tests/integration/test_fastapi_agent.py`
+- [ ] T024 [P] [FASTAPI] Integration test for `/chat` endpoint with invalid inputs in `tests/integration/test_fastapi_agent.py`
+
+### Implementation for FastAPI Integration
+
+- [ ] T025 [P] [FASTAPI] Install `fastapi` and `uvicorn` (add to `pyproject.toml`)
+- [ ] T026 [P] [FASTAPI] Create `src/main.py` with a basic FastAPI application instance.
+- [ ] T027 [P] [FASTAPI] Define a POST endpoint `/chat` in `src/main.py` that accepts a `query: str` in the request body.
+- [ ] T028 [P] [FASTAPI] Call `chat_with_agent(query)` from the `/chat` endpoint in `src/main.py`.
+- [ ] T029 [P] [FASTAPI] Return the agent's response as a JSON object from the `/chat` endpoint.
+
+---
+
 ## Phase N: Polish & Cross-Cutting Concerns
 
 **Purpose**: Improvements that affect multiple user stories
@@ -140,7 +161,8 @@ description: "Task list for Math Agent – Function-Calling Add & Subtract Agent
 - **User Stories (Phase 4, 5, 6)**: All depend on OpenAI Agent SDK Integration phase completion.
   - User stories can then proceed in parallel (if staffed)
   - Or sequentially in priority order (P1 → P2 → P3)
-- **Polish (Final Phase)**: Depends on all desired user stories being complete
+- **FastAPI Integration (Phase 7)**: Depends on OpenAI Agent SDK Integration phase completion.
+- **Polish (Final Phase)**: Depends on all desired user stories AND FastAPI Integration being complete
 
 ### User Story Dependencies
 

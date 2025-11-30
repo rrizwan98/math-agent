@@ -71,6 +71,7 @@ As a user, I want to receive a clear error message if I provide invalid inputs o
 - **FR-004**: The agent MUST return a structured error message if any input is not a number, as detected by the OpenAI Agent SDK or internal validation.
 - **FR-005**: The agent MUST NOT perform any other mathematical operations besides addition and subtraction, and MUST return a structured error if such an operation is requested via natural language.
 - **FR-006**: The agent MUST use the OpenAI Agent SDK for processing natural language queries and invoking the `add` and `subtract` functions.
+- **FR-007**: A FastAPI endpoint MUST be created to receive natural language queries, pass them to the `chat_with_agent()` function, and return the agent's response as a JSON object.
 
 ## Success Criteria *(mandatory)*
 
