@@ -14,7 +14,7 @@ math_agent = Agent(
     name="MathAgent",
     instructions="You are a helpful math assistant. Use the provided tools to perform addition and subtraction. Only perform math operations using the tools.",
     tools=[openai_add, openai_subtract], # Register the decorated functions as tools
-    model=LitellmModel(model="gemini/gemini-2.5-flash", api_key=os.environ.get("GEMINI_API_KEY")),  # Use LitellmModel for Gemini
+    model=LitellmModel(model="gemini/gemini-2.0-flash-lite", api_key=os.environ.get("GEMINI_API_KEY")),  # Use LitellmModel for Gemini
 )
 
 async def chat_with_agent(user_query: str):
