@@ -1,130 +1,85 @@
-# Quickstart Guide: Math Agent with OpenAI SDK
+# Quickstart Guide: Math Agent with OpenAI SDK and ChatKit UI
 
-This guide provides a quick overview of how to interact with the Math Agent for basic addition and subtraction operations using natural language via the OpenAI Agent SDK.
+This guide provides a quick overview of how to set up and interact with the Math Agent. The agent now features a web-based chat interface built with OpenAI ChatKit, communicating with a FastAPI backend that leverages the OpenAI Agent SDK for basic addition and subtraction operations using natural language.
 
-## Available Functions (as tools for the OpenAI Agent)
+## 1. Prerequisites
 
-The Math Agent exposes two primary functions as tools for the OpenAI Agent:
+Before you begin, ensure you have the following installed:
 
-1.  **`add(a: number, b: number)`**:
-    *   **Description**: Adds two numbers, `a` and `b`.
-    *   **Parameters**:
-        *   `a` (number): The first operand.
-        *   `b` (number): The second operand.
-    *   **Returns**: The sum as a number.
+*   **Python 3.12** or higher
+*   **uv** (for Python package management)
+*   **Node.js** and **npm** (or Yarn) for the frontend development
 
-2.  **`subtract(a: number, b: number)`**:
-    *   **Description**: Subtracts one number from another, `a` and `b` (`a - b`).
-    *   **Parameters**:
-        *   `a` (number): The number to subtract from.
-        *   `b` (number): The number to subtract.
-    *   **Returns**: The difference as a number.
+## 2. Setup Environment Variables
 
-## Basic Usage Examples (via Natural Language)
+The agent uses the Gemini API. You need to set your `GEMINI_API_KEY` as an environment variable. Create a `.env` file in the root of your project directory with the following content:
 
-To interact with the agent, you will use the `chat_with_agent` asynchronous function, providing a natural language query.
-
-### Example 1: Addition
-
-To add `5` and `3` using natural language:
-
-```python
-import asyncio
-from src.agent.agent import chat_with_agent
-
-async def main():
-    query = "Please add 5 and 3 for me."
-    result = await chat_with_agent(query)
-    print(result)
-
-if __name__ == "__main__":
-    # Ensure OPENAI_API_KEY environment variable is set.
-    # e.g., export OPENAI_API_KEY="YOUR_API_KEY"
-    asyncio.run(main())
+```
+GEMINI_API_KEY="YOUR_GEMINI_API_KEY"
 ```
 
-**Expected Output**: `8.0`
+Replace `"YOUR_GEMINI_API_KEY"` with your actual Gemini API key.
 
-### Example 2: Subtraction
+## 3. Install Backend Dependencies
 
-To subtract `7` from `10` using natural language:
+Navigate to the root directory of your project and install the Python dependencies:
 
-```python
-import asyncio
-from src.agent.agent import chat_with_agent
-
-async def main():
-    query = "What is 10 minus 7?"
-    result = await chat_with_agent(query)
-    print(result)
-
-if __name__ == "__main__":
-    # Ensure OPENAI_API_KEY environment variable is set.
-    # e.g., export OPENAI_API_KEY="YOUR_API_KEY"
-    asyncio.run(main())
+```bash
+uv pip install -e .
 ```
 
-**Expected Output**: `3.0`
+## 4. Start the FastAPI Backend
 
-### Example 3: Handling Decimal Numbers
+From the root directory of your project, run the FastAPI application:
 
-```python
-import asyncio
-from src.agent.agent import chat_with_agent
-
-async def main():
-    query_add = "Add 1.5 to 2.5"
-    result_add = await chat_with_agent(query_add)
-    print(f"Add result: {result_add}") # Expected: 4.0
-
-    query_subtract = "Take 2.5 away from 10.5"
-    result_subtract = await chat_with_agent(query_subtract)
-    print(f"Subtract result: {result_subtract}") # Expected: 8.0
-
-if __name__ == "__main__":
-    # Ensure OPENAI_API_KEY environment variable is set.
-    # e.g., export OPENAI_API_KEY="YOUR_API_KEY"
-    asyncio.run(main())
+```bash
+uvicorn src.main:app --reload
 ```
 
-## Error Handling (via Natural Language)
+The backend API will be running on `http://127.0.0.1:8000`. This server will serve both the `/chat` API endpoint and the static files for the frontend application.
 
-The agent will return a structured error message if invalid inputs are provided or unsupported operations are requested via natural language.
+## 5. Install Frontend Dependencies and Build
 
-### Example 4: Invalid Input
+First, navigate into the `frontend` directory:
 
-```python
-import asyncio
-from src.agent.agent import chat_with_agent
-
-async def main():
-    query = "Can you add 'hello' and 3?"
-    result = await chat_with_agent(query)
-    print(result)
-
-if __name__ == "__main__":
-    # Ensure OPENAI_API_KEY environment variable is set.
-    # e.g., export OPENAI_API_KEY="YOUR_API_KEY"
-    asyncio.run(main())
+```bash
+cd frontend
 ```
 
-**Expected Output**: An error message indicating invalid input (e.g., "Error: Inputs must be numbers." or a model-generated response indicating it can't perform the action with non-numeric inputs).
+Then, install the Node.js dependencies:
 
-### Example 5: Unsupported Operation
-
-```python
-import asyncio
-from src.agent.agent import chat_with_agent
-
-async def main():
-    query = "What is 2 multiplied by 3?"
-    result = await chat_with_agent(query)
-    print(result)
-
-if __name__ == "__main__":
-    # Ensure OPENAI_API_KEY environment variable is set.
-    # e.g., export OPENAI_API_KEY="YOUR_API_KEY"
-    asyncio.run(main())
+```bash
+npm install
 ```
 
-**Expected Output**: A response indicating the operation is not supported (e.g., "I can only add and subtract numbers.").
+Now, build the frontend project. This will create the `dist` directory which the FastAPI backend will serve:
+
+```bash
+npm run build
+```
+
+## 6. Interact with the Agent via ChatKit UI
+
+Once the backend is running and the frontend is built, open your web browser and navigate to:
+
+```
+http://127.0.0.1:8000/app
+```
+
+You should see the ChatKit UI.
+
+### Key Interaction Points:
+
+*   **Natural Language Queries**: Type your math questions directly into the chat input.
+*   **Flexible Responses**: The agent is designed to provide answers in various natural language formats (e.g., "The answer is 4", "4", "Your sum is 4").
+*   **30-Second Delay**: Expect a ~30-second delay for each agent response, as per the system's requirement for Gemini API calls.
+
+### Examples:
+
+1.  **Addition**: Type "What is 5 plus 3?" or "Add 10 to 20".
+2.  **Subtraction**: Type "Subtract 5 from 10" or "What is 15 minus 7?".
+3.  **Decimal Numbers**: Type "Add 1.5 to 2.5" or "Take 2.5 away from 10.5".
+4.  **Error Handling (Invalid Input)**: Type "Can you add 'hello' and 3?".
+5.  **Error Handling (Unsupported Operation)**: Type "What is 2 multiplied by 3?".
+
+Observe the agent's responses in the chat history. For math operations, verify that the numerical result is correct, regardless of the phrasing. For invalid inputs or unsupported operations, ensure a clear error message is displayed.
