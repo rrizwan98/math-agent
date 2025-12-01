@@ -29,8 +29,7 @@ description: "Task list for Math Agent – Function-Calling Add & Subtract Agent
 
 - [X] T001 Create project structure: `src/agent/`, `src/lib/`, `tests/unit/`, `tests/integration/`, `frontend/`
 - [X] T002 Initialize Python 3.12 project using 'uv' (automatically creates .venv and .toml files)
-- [X] T003 Install `pytest` for testing (add to `pyproject.toml` or `requirements.txt`)
-- [X] T003.1 Install OpenAI Python SDK (add to `pyproject.toml` or `requirements.txt`)
+- [X] T003 Install dependencies from pyproject.toml: `litellm>=1.80.7`, `openai>=2.8.1`, `openai-agents[litellm]>=0.6.1`, `openai-chatkit>=0.1.0`, `pytest>=9.0.1`, `pytest-asyncio>=1.3.0`, `python-dotenv>=1.2.1`, `fastapi>=0.111.0`, `uvicorn>=0.30.1`, `python-multipart>=0.0.9`
 
 ---
 
@@ -133,7 +132,7 @@ description: "Task list for Math Agent – Function-Calling Add & Subtract Agent
 
 ### Implementation for FastAPI Integration
 
-- [ ] T025 [P] [FASTAPI] Install `fastapi`, `uvicorn`, and `python-multipart` (for file serving) (add to `pyproject.toml`)
+
 - [ ] T026 [P] [FASTAPI] Create `src/main.py` with a basic FastAPI application instance.
 - [ ] T027 [P] [FASTAPI] Define a POST endpoint `/chat` in `src/main.py` that accepts a `query: str` in the request body.
 - [ ] T028 [P] [FASTAPI] Call `chat_with_agent(query)` from the `/chat` endpoint in `src/main.py`.

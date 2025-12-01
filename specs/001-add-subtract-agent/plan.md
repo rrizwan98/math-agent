@@ -12,7 +12,7 @@ This plan outlines the implementation for a Math Agent capable of performing bas
 ## Technical Context
 
 **Language/Version**: Python 3.12 (Backend), JavaScript/TypeScript (Frontend for ChatKit)
-**Primary Dependencies**: OpenAI Agent SDK, OpenAI ChatKit SDK, `pytest`, `FastAPI`, `uvicorn`, `React` (for ChatKit frontend)
+**Primary Dependencies**: `litellm>=1.80.7`, `openai>=2.8.1`, `openai-agents[litellm]>=0.6.1`, `openai-chatkit>=0.1.0`, `pytest>=9.0.1`, `fastapi>=0.111.0`, `uvicorn>=0.30.1`, `React` (for ChatKit frontend)
 **Storage**: N/A
 **Testing**: `pytest` (for backend), potentially `Jest`/`React Testing Library` (for frontend, if scope allows)
 **Target Platform**: Linux server (containerized deployment expected) for backend; Web browser for frontend.
