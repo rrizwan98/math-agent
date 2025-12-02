@@ -9,6 +9,7 @@ const chatKitOptions: ChatKitOptions = {
   api: {
     url: '/api/chatkit',
     domainKey: 'dev', // Required but not verified on localhost
+    // TODO: configure your ChatKit API integration (URL, auth, uploads).
   },
   theme: {
     colorScheme: 'dark',
@@ -40,70 +41,22 @@ const chatKitOptions: ChatKitOptions = {
           weight: 400,
           style: 'normal',
           display: 'swap'
-        },
-        {
-          family: 'OpenAI Sans',
-          src: 'https://cdn.openai.com/common/fonts/openai-sans/v2/OpenAISans-Medium.woff2',
-          weight: 500,
-          style: 'normal',
-          display: 'swap'
-        },
-        {
-          family: 'OpenAI Sans',
-          src: 'https://cdn.openai.com/common/fonts/openai-sans/v2/OpenAISans-SemiBold.woff2',
-          weight: 600,
-          style: 'normal',
-          display: 'swap'
-        },
-        {
-          family: 'OpenAI Sans',
-          src: 'https://cdn.openai.com/common/fonts/openai-sans/v2/OpenAISans-Bold.woff2',
-          weight: 700,
-          style: 'normal',
-          display: 'swap'
         }
+        // ...and 7 more font sources
       ]
     }
   },
   composer: {
     placeholder: 'Message the mathagent',
     attachments: {
-      enabled: false,
+      enabled: false
     },
-    tools: [
-      {
-        id: 'add',
-        label: 'Add numbers',
-        shortLabel: 'Add',
-        placeholderOverride: 'Enter numbers to add',
-        icon: 'plus',
-        pinned: true
-      },
-      {
-        id: 'subtract',
-        label: 'Subtract numbers',
-        shortLabel: 'Subtract',
-        placeholderOverride: 'Enter numbers to subtract',
-        icon: 'write',
-        pinned: true
-      }
-    ],
   },
   startScreen: {
-    greeting: 'Hello! I am your Math Agent. I can help you with addition and subtraction.',
-    prompts: [
-      {
-        label: 'Add numbers',
-        prompt: 'What is 25 + 17?',
-        icon: 'write',
-      },
-      {
-        label: 'Subtract numbers',
-        prompt: 'What is 100 - 37?',
-        icon: 'lightbulb',
-      },
-    ],
+    greeting: '',
+    prompts: [],
   },
+  // Optional fields not shown: locale, initialThread, threadItemActions, header, onClientTool, entities, widgets
 };
 
 export default function ChatWidget() {
